@@ -1,0 +1,17 @@
+TODO:
+    - Rotations
+    - Rotations Test Suite
+    - Red-Black Tree
+    - Red-Black Tree Test Suite
+
+Optimization features:
+    - Add a pointer to BST that tracks the next runnable job for O(1) look up time.
+
+WARNING: 
+    - Make sure you update parent during remove method as well.
+
+CURRENT:
+    - Fix the rotation logic in BST::rightRotation line 281
+    - LR Rotations 
+    
+        

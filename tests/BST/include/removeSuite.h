@@ -1,0 +1,30 @@
+#pragma once
+
+#include "../include/jobGenerator.h"
+#include "../include/validateTreeTraversal.h"
+#include "../include/shuffle.h"
+#include <iostream>
+#include <random>
+
+bool testRemoveEmptyTree();
+bool testRemoveRootNode();
+bool testRemoveRootNodeWithChildren();
+bool testRemoveRootNodeWithRightChild();
+bool testRemoveRootNodeWithLeftChild();
+bool testRemoveRootNodeWithSuccessorNoChild();
+bool testRemoveRootNodeWithSuccessorImmediateRight();
+bool testRemoveRootNodeWithSuccessorHasRightChild();
+bool testRemoveNodeWithNoChildrenRight();
+bool testRemoveNodeWithNoChildrenLeft();
+bool testRemoveNodeWithLeftChild();
+bool testRemoveNodeWithRightChild();
+bool testRemoveNodeWithTwoChildren();
+bool testRemoveDeepNodeNoChildren();
+bool testRemoveDeepNodeTwoChildren();
+bool testSequentialDeletionUntilEmpty();
+bool testRemoveNoneExistingNode();
+bool testRemoveSameNodeTwice();
+bool testRemoveNodesWithIdenticalVRuntime();
+bool testDeleteRootThenDeleteSuccessor();
+bool testDeleteNodesInRandomOrder();
+bool testDeleteAllNodesInReverseInsertionOrder();

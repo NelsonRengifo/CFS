@@ -1,0 +1,65 @@
+# ==============================
+# Build directories
+# ==============================
+
+# CMake build output
+build/
+cmake-build-*/
+out/
+
+# ==============================
+# Compiled files
+# ==============================
+
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+*.exe
+
+# ==============================
+# Debugging
+# ==============================
+
+core
+core.*
+*.core
+
+# ==============================
+# CMake
+# ==============================
+
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+
+# ==============================
+# VS Code
+# ==============================
+
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# ==============================
+# Operating system
+# ==============================
+
+.DS_Store
+Thumbs.db
+
+# ==============================
+# Temporary files
+# ==============================
+
+*.tmp
+*.bak
+*~
+*.swp
+*.swo

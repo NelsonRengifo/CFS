@@ -1,6 +1,4 @@
 #include "BST.h"
-#include <iostream> // REMOVE!
-#include <cassert>  // REMOVE!
 
 // WARNING: You must update a node's vruntime when the job's vruntime changes.
 
@@ -172,24 +170,14 @@ void BST::insert(Job *job, unsigned int weight)
         {
             Rotation type = rotation(curr, factor);
 
-            if (type == Rotation::LL)
+            if (type == Rotation::LL || type == Rotation::LR)
             {
                 rightRotation(curr, type);
             }
 
-            else if (type == Rotation::RR)
+            if (type == Rotation::RR || type == Rotation::RL)
             {
-                leftRotation(curr);
-            }
-
-            else if (type == Rotation::LR)
-            {
-                rightRotation(curr, type);
-            }
-
-            else if (type == Rotation::RL)
-            {
-                ;
+                leftRotation(curr, type);
             }
         }
 
@@ -198,8 +186,33 @@ void BST::insert(Job *job, unsigned int weight)
 }
 
 // RR or RL rotation
-void BST::leftRotation(Node *node)
+void BST::leftRotation(Node *node, const Rotation &type)
 {
+    if (type == Rotation::RL)
+    {
+        // Suppose you inserted 10, 30, 20 (draw the tree)...
+
+        // 1. Store 20 locally
+        std::unique_ptr<Node> twenty = std::move(node->getRight()->getLeftOwner());
+
+        // 2. Store 30 locally
+        std::unique_ptr<Node> thirty = std::move(node->getRightOwner());
+
+        // 3. Set 20's parent to 10 via 30
+        twenty->setParent(thirty->getParent());
+
+        // 4. Move 20 into 10's right (local 20 is no longer available)
+        node->setRight(std::move(twenty));
+
+        // 5. Set 30's parent to be 20 via 10 (use right child)
+        thirty->setParent(node->getRight());
+
+        // 6. Move 30 into 20's right via 10
+        node->getRight()->setRight(std::move(thirty));
+
+        // The subtree is ready for left rotation
+    }
+
     // Rotation around root
     if (!node->getParent())
     {
@@ -220,15 +233,31 @@ void BST::leftRotation(Node *node)
     // Rotation deep in tree
     else
     {
-        // 1. Save curr node locally
-        std::unique_ptr<Node> curr = std::move(node->getParent()->getRightOwner());
+        if (node->getParent()->getLeft() == node)
+        {
+            // 1. Save curr node locally
+            std::unique_ptr<Node> curr = std::move(node->getParent()->getLeftOwner());
 
-        // 2. Set curr's child parent to be curr's parent and set curr's parent to own curr's child
-        curr->getRight()->setParent(curr->getParent());
-        curr->getParent()->setRight(std::move(curr->getRightOwner()));
+            // 2. Set curr's child parent to be curr's parent and set curr's parent to own curr's child
+            curr->getRight()->setParent(curr->getParent());
+            curr->getParent()->setLeft(std::move(curr->getRightOwner()));
 
-        // 3. Set curr as the left child of curr's right child
-        curr->getParent()->getRight()->setLeft(std::move(curr));
+            // 3. Set curr as the left child of curr's right child
+            curr->getParent()->getLeft()->setLeft(std::move(curr));
+        }
+
+        if (node->getParent()->getRight() == node)
+        {
+            // 1. Save curr node locally
+            std::unique_ptr<Node> curr = std::move(node->getParent()->getRightOwner());
+
+            // 2. Set curr's child parent to be curr's parent and set curr's parent to own curr's child
+            curr->getRight()->setParent(curr->getParent());
+            curr->getParent()->setRight(std::move(curr->getRightOwner()));
+
+            // 3. Set curr as the right child of curr's right child
+            curr->getParent()->getRight()->setLeft(std::move(curr));
+        }
     }
 }
 

@@ -11,7 +11,6 @@ WARNING:
     - Make sure you update parent during remove method as well.
 
 CURRENT:
-    - Fix the rotation logic in BST::rightRotation line 281
-    - LR Rotations 
+    - Rebalancing After Deletion. Understand how it works and how to proceed.
     
         

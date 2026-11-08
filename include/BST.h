@@ -57,7 +57,7 @@ private:
     Direction compare(Job *job, Node *currNode);
     Rotation rotation(Node *node, int factor);
     void rightRotation(Node *node, const Rotation &type);
-    void leftRotation(Node *node);
+    void leftRotation(Node *node, const Rotation &type);
     std::pair<Node *, Node *> findSuccessor(Node *target);
     int height(Node *node);
     int balanceFactor(Node *node);

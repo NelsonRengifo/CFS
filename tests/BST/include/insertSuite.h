@@ -9,6 +9,9 @@
 #include <random>
 #include <iostream>
 
+bool testInsertAllNodesWithIdenticalVruntimes();
+bool testRightLeftRotation();
+bool testRootRightLeftRotation();
 bool testLeftRightRotation();
 bool testRootLeftRightRotation();
 bool testRightRightRotation();

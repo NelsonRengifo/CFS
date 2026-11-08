@@ -6,6 +6,9 @@
 
 // Add new tests here
 std::unordered_map<std::string, Test> Runner::tests = {
+    {"testInsertAllNodesWithIdenticalVruntimes", {"testInsertAllNodesWithIdenticalVruntimes", testInsertAllNodesWithIdenticalVruntimes}},
+    {"testRightLeftRotation", {"testRightLeftRotation", testRightLeftRotation}},
+    {"testRootRightLeftRotation", {"testRootRightLeftRotation", testRootRightLeftRotation}},
     {"testLeftRightRotation", {"testLeftRightRotation", testLeftRightRotation}},
     {"testRootLeftRightRotation", {"testRootLeftRightRotation", testRootLeftRightRotation}},
     {"testRightRightRotation", {"testRightRightRotation", testRightRightRotation}},
